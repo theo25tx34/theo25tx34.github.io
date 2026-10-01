@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Fotografi</title>
+    <!-- CDN Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+
+    <!-- Header / Navigasi Atas -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Kembali ke Portofolio
+            </a>
+            <span class="text-xl font-bold text-white tracking-wider">
+                TB<span class="text-cyan-400">.</span>
+            </span>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="pt-24 pb-16 px-4 max-w-6xl mx-auto">
+        
+        <!-- Judul Halaman -->
+        <section class="mb-8">
+            <div class="flex items-center gap-3 mb-2">
+                <i data-lucide="camera" class="w-8 h-8 text-cyan-400"></i>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white">Galeri Fotografi</h1>
+            </div>
+            <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                Eksplorasi visual, <em class="text-slate-300">street photography</em>, fotografi <em class="text-slate-300">action figure</em>, serta hasil <em class="text-slate-300">color grading</em>.
+            </p>
+        </section>
+
+        <!-- Form Upload Foto -->
+        <section class="mb-10 bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+            <h2 class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i> Unggah Foto Baru
+            </h2>
+            <form id="upload-form" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-1">
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Pilih Gambar</label>
+                    <input type="file" id="image-input" accept="image/*" required class="block w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-cyan-400 hover:file:bg-slate-700 cursor-pointer">
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Judul Foto</label>
+                    <input type="text" id="title-input" placeholder="Masukkan judul foto..." required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Kategori</label>
+                    <select id="category-input" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                        <option value="street">Street & Urban</option>
+                        <option value="figure">Action Figures</option>
+                        <option value="nature">Nature</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1 flex items-end">
+                    <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs py-2.5 px-4 rounded-lg transition flex items-center justify-center gap-1.5">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Tambahkan
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Tombol Filter Kategori -->
+        <div class="flex flex-wrap gap-2 mb-8" id="filter-container">
+            <button data-filter="all" class="filter-btn active px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-cyan-500 text-slate-950">Semua Foto</button>
+            <button data-filter="street" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white">Street & Urban</button>
+            <button data-filter="figure" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white">Action Figures</button>
+            <button data-filter="nature" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white">Nature</button>
+        </div>
+
+        <!-- Grid Galeri (Dikosongkan) -->
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    </main>
+
+    <!-- Modal Pop-up Foto Full Screen -->
+    <div id="photo-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 transition duration-300">
+        <!-- Tombol Close Modal -->
+        <button id="close-modal-btn" class="absolute top-5 right-5 p-2 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-full border border-slate-700 transition">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Konten Foto & Keterangan dalam Modal -->
+        <div class="max-w-4xl w-full flex flex-col items-center max-h-[90vh]">
+            <img id="modal-img" src="" alt="" class="max-h-[75vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-slate-800 mb-4">
+            <div class="text-center">
+                <h2 id="modal-title" class="text-xl font-bold text-white mb-1"></h2>
+                <p id="modal-category" class="text-xs font-semibold text-cyan-400 uppercase tracking-wider"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        lucide.createIcons();
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryGrid = document.getElementById('gallery-grid');
+        const uploadForm = document.getElementById('upload-form');
+        const MAX_PHOTOS = 15;
+
+        // Element Modal
+        const photoModal = document.getElementById('photo-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // 1. Muat Foto dari LocalStorage
+        document.addEventListener('DOMContentLoaded', loadSavedPhotos);
+
+        // 2. Filter Kategori
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => {
+                    b.className = "filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white";
+                });
+                this.className = "filter-btn active px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-cyan-500 text-slate-950";
+
+                const filterValue = this.getAttribute('data-filter');
+                const photoCards = document.querySelectorAll('.photo-card');
+
+                photoCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || filterValue === cardCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 3. Form Upload
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const currentPhotoCount = document.querySelectorAll('.photo-card').length;
+            if (currentPhotoCount >= MAX_PHOTOS) {
+                alert(`Batas maksimal ${MAX_PHOTOS} foto telah tercapai! Hapus beberapa foto terlebih dahulu.`);
+                return;
+            }
+
+            const imageInput = document.getElementById('image-input');
+            const titleInput = document.getElementById('title-input');
+            const categoryInput = document.getElementById('category-input');
+
+            const file = imageInput.files[0];
+            const title = titleInput.value;
+            const category = categoryInput.value;
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    const photoData = {
+                        id: Date.now(),
+                        title: title,
+                        category: category,
+                        image: imageUrl
+                    };
+
+                    savePhotoToStorage(photoData);
+                    renderPhotoCard(photoData);
+
+                    lucide.createIcons();
+                    uploadForm.reset();
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 4. Render Kartu Foto
+        function renderPhotoCard(data) {
+            let categoryLabel = "";
+            if(data.category === "street") categoryLabel = "Street & Urban";
+            else if(data.category === "figure") categoryLabel = "Action Figures";
+            else if(data.category === "nature") categoryLabel = "Nature";
+
+            const newCard = document.createElement('div');
+            newCard.className = "photo-card bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition duration-300 group relative cursor-pointer";
+            newCard.setAttribute('data-category', data.category);
+            newCard.setAttribute('data-id', data.id);
+
+            newCard.innerHTML = `
+                <div class="relative overflow-hidden aspect-video bg-slate-800" onclick="openModal('${data.image}', '${data.title.replace(/'/g, "\\'")}', '${categoryLabel}')">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <span class="bg-slate-950/80 text-white text-xs px-3 py-1.5 rounded-full border border-slate-700 flex items-center gap-1">
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-cyan-400"></i> Lihat Full
+                        </span>
+                    </div>
+                </div>
+                <button onclick="removePhoto(${data.id}, event)" class="absolute top-3 right-3 p-2 bg-slate-950/80 hover:bg-rose-600 text-slate-400 hover:text-white rounded-lg transition border border-slate-700/50 hover:border-rose-500 shadow-md z-10">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+                <div class="p-5" onclick="openModal('${data.image}', '${data.title.replace(/'/g, "\\'")}', '${categoryLabel}')">
+                    <h3 class="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition">${data.title}</h3>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                        <i data-lucide="tag" class="w-3.5 h-3.5 text-cyan-400"></i>
+                        <span>${categoryLabel}</span>
+                    </div>
+                </div>
+            `;
+
+            galleryGrid.prepend(newCard);
+        }
+
+        // 5. Simpan & Load Storage
+        function savePhotoToStorage(photo) {
+            let photos = JSON.parse(localStorage.getItem('my_gallery_photos')) || [];
+            photos.push(photo);
+            localStorage.setItem('my_gallery_photos', JSON.stringify(photos));
+        }
+
+        function loadSavedPhotos() {
+            let photos = JSON.parse(localStorage.getItem('my_gallery_photos')) || [];
+            photos.forEach(photo => renderPhotoCard(photo));
+            lucide.createIcons();
+        }
+
+        // 6. Hapus Foto
+        function removePhoto(id, event) {
+            event.stopPropagation(); // Mencegah modal terbuka saat klik tombol hapus
+            let photos = JSON.parse(localStorage.getItem('my_gallery_photos')) || [];
+            photos = photos.filter(p => p.id !== id);
+            localStorage.setItem('my_gallery_photos', JSON.stringify(photos));
+
+            const card = document.querySelector(`.photo-card[data-id="${id}"]`);
+            if (card) {
+                card.remove();
+            }
+        }
+
+        // 7. Fungsi Buka & Tutup Modal Full Screen
+        function openModal(imgSrc, title, category) {
+            modalImg.src = imgSrc;
+            modalTitle.textContent = title;
+            modalCategory.textContent = category;
+
+            photoModal.classList.remove('hidden');
+            photoModal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Mencegah scrolling saat modal terbuka
+        }
+
+        function closeModal() {
+            photoModal.classList.add('hidden');
+            photoModal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // Mengembalikan scroll
+        }
+
+        // Event Listener Tutup Modal
+        closeModalBtn.addEventListener('click', closeModal);
+        photoModal.addEventListener('click', function(e) {
+            if (e.target === photoModal) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

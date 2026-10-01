@@ -3,594 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theofilus Bilung - Portfolio & Biodata</title>
+    <title>Theofilus Bilung | Portfolio & Biodata</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Orbitron for Tech Feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0B0F19',
-                            card: '#111827',
-                            accent: '#00F0FF',
-                            purple: '#7000FF',
-                            pink: '#FF007A'
-                        }
-                    },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        tech: ['Orbitron', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: 'rgba(17, 24, 39, 0.7)',
+                        cyanGlow: '#00f2fe',
+                        blueGlow: '#4facfe',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 242, 254, 0.3), inset 0 0 15px rgba(0, 242, 254, 0.3)' },
+                            '100%': { boxShadow: '0 0 35px rgba(0, 242, 254, 0.8), inset 0 0 20px rgba(0, 242, 254, 0.5)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        .glow-text {
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .glow-box {
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
         }
-        .glow-box:hover {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
         }
-        .gradient-border {
-            border: 1px solid transparent;
-            background: linear-gradient(135deg, #111827, #1f2937) padding-box,
-                        linear-gradient(135deg, #00F0FF, #7000FF) border-box;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+
+        .neon-border {
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+        .backdrop-blur-custom {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
     </style>
 </head>
-<body class="bg-brand-dark text-gray-200 font-sans antialiased selection:bg-brand-accent selection:text-black">
+<body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-cyan-500 selection:text-black min-h-screen overflow-x-hidden">
 
-    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-2">
-                    <span class="font-tech text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-accent to-brand-purple">
-                        TB.
-                    </span>
-                    <span class="text-xs text-gray-400 font-mono hidden sm:inline-block">| Theofilus Bilung</span>
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-darkBg transition-opacity duration-700">
+        <!-- Background Grid Effect -->
+        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+        
+        <div class="relative z-10 flex flex-col items-center max-w-md px-6 text-center">
+            <!-- Neon Logo Ring -->
+            <div class="relative mb-8 group">
+                <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 opacity-75 blur-lg group-hover:opacity-100 transition duration-1000 animate-pulse-slow"></div>
+                <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-slate-950 border-2 border-cyan-400/50 flex items-center justify-center animate-glow shadow-[0_0_30px_rgba(0,242,254,0.3)]">
+                    <span class="text-4xl md:text-5xl font-black tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 neon-text">THEO</span>
                 </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-6 text-sm font-medium">
-                        <a href="#hero" class="text-gray-300 hover:text-brand-accent transition-colors">Beranda</a>
-                        <a href="#about" class="text-gray-300 hover:text-brand-accent transition-colors">Tentang Saya</a>
-                        <a href="#experience" class="text-gray-300 hover:text-brand-accent transition-colors">Pengalaman</a>
-                        <a href="#skills" class="text-gray-300 hover:text-brand-accent transition-colors">Keahlian</a>
-                        <a href="#portfolio" class="text-gray-300 hover:text-brand-accent transition-colors">Portofolio</a>
-                        <a href="#contact" class="px-4 py-2 rounded-lg bg-gradient-to-r from-brand-accent to-brand-purple text-black font-semibold hover:opacity-90 transition-opacity">Kontak</a>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Welcome Text & Status -->
+            <h1 class="text-2xl font-bold text-white mb-2 tracking-wide">Welcome to my website</h1>
+            <p id="loading-status" class="text-xs tracking-widest text-cyan-400/80 uppercase font-mono mb-6">Menginisialisasi Sistem...</p>
+
+            <!-- Interactive Progress Bar -->
+            <div class="w-full bg-slate-800/80 rounded-full h-2.5 mb-8 p-0.5 border border-slate-700/50 overflow-hidden">
+                <div id="progress-bar" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-1.5 rounded-full w-0 transition-all duration-300 shadow-[0_0_10px_#00f2fe]"></div>
+            </div>
+
+            <!-- Enter Button (Hidden until loaded) -->
+            <button id="enter-btn" onclick="enterPortfolio()" class="opacity-0 pointer-events-none transform translate-y-4 transition-all duration-500 px-8 py-3.5 rounded-xl font-bold text-slate-900 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 shadow-[0_0_20px_rgba(0,242,254,0.4)] hover:shadow-[0_0_30px_rgba(0,242,254,0.7)] flex items-center gap-3 group">
+                <span>MASUK PORTFOLIO</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN PORTFOLIO CONTENT (Initial hidden/blurred state) -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-700">
+
+        <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/70 backdrop-blur-custom border-b border-slate-800/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-slate-900 border border-cyan-500/40 flex items-center justify-center font-bold text-cyan-400 shadow-[0_0_10px_rgba(0,242,254,0.2)] group-hover:border-cyan-400 transition">Tb</div>
+                    <span class="font-bold text-lg text-white tracking-wide group-hover:text-cyan-400 transition">Theofilus B.</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition hover:neon-text">Beranda</a>
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition hover:neon-text">Biodata</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition hover:neon-text">Keahlian</a>
+                    <a href="#portfolio" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition hover:neon-text">Portofolio</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition">Kontak</a>
+                </nav>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Nav Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+                <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Beranda</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Biodata</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Keahlian</a>
+                <a href="#portfolio" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Portofolio</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-cyan-400 font-medium">Kontak Saya</a>
+            </div>
+        </header>
+
+        <section id="home" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+            <!-- Glowing Background Circles -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6 animate-float">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    S1 Sistem Informasi Graduate & Content Creator
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                    Hi, Saya <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">Theofilus Bilung</span>, S.Kom
+                </h1>
+
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 leading-relaxed">
+                    Lulusan Sistem Informasi berpembawaan adaptif dengan keahlian ganda di bidang **Teknologi Informasi / Administrasi Digital** dan **Kreatif Media / Content Creation**. Berdomisili di Sangatta, Kalimantan Timur.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#about" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold hover:shadow-[0_0_20px_rgba(0,242,254,0.4)] transition flex items-center gap-2">
+                        <span>Lihat Profil Lengkap</span>
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="px-7 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-semibold hover:border-cyan-400/50 hover:bg-slate-800 transition flex items-center gap-2">
+                        <span>Hubungi Saya</span>
+                        <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                    </a>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Mobile Menu dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-gray-800 px-4 pt-2 pb-4 space-y-2">
-            <a href="#hero" class="block py-2 text-gray-300 hover:text-brand-accent">Beranda</a>
-            <a href="#about" class="block py-2 text-gray-300 hover:text-brand-accent">Tentang Saya</a>
-            <a href="#experience" class="block py-2 text-gray-300 hover:text-brand-accent">Pengalaman</a>
-            <a href="#skills" class="block py-2 text-gray-300 hover:text-brand-accent">Keahlian</a>
-            <a href="#portfolio" class="block py-2 text-gray-300 hover:text-brand-accent">Portofolio</a>
-            <a href="#contact" class="block py-2 text-brand-accent font-semibold">Kontak</a>
-        </div>
-    </nav>
+        <section id="about" class="py-20 bg-slate-950/50 border-y border-slate-800/60 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-3">Biodata & Profil Diri</h2>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+                </div>
 
-    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
-        <!-- Background decorative blobs -->
-        <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-brand-purple/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-12">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/80 border border-brand-accent/30 text-brand-accent text-xs font-mono mb-6">
-                <i class="fa-solid fa-location-dot"></i> Sangatta, Kalimantan Timur
-            </div>
-            
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4">
-                Halo, Saya <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-accent via-blue-400 to-brand-purple glow-text">Theofilus Bilung</span>
-            </h1>
-            
-            <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-medium mb-6">
-                Lulusan S1 Sistem Informasi <span class="text-brand-accent">|</span> Content Creator <span class="text-brand-accent">|</span> Web Developer & Video Editor
-            </p>
-
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
-                Berdedikasi dalam menggabungkan keahlian <span class="text-gray-200">teknologi informasi</span>, kreasi konten <span class="text-gray-200">gaming & hiburan</span>, serta pengembangan sistem interaktif untuk menciptakan solusi visual dan digital yang berdampak.
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="#portfolio" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-accent to-brand-purple text-black font-bold shadow-lg hover:shadow-brand-accent/20 transition-all transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-briefcase mr-2"></i> Lihat Portofolio
-                </a>
-                <a href="#contact" class="px-6 py-3 rounded-xl bg-gray-800 border border-gray-700 hover:border-brand-accent text-gray-200 font-semibold transition-all hover:-translate-y-0.5">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Hubungi Saya
-                </a>
-            </div>
-
-            <!-- Social Links Quick Access -->
-            <div class="flex items-center justify-center gap-6 mt-12 text-gray-400 text-xl">
-                <a href="https://youtube.com" target="_blank" class="hover:text-red-500 transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com" target="_blank" class="hover:text-pink-400 transition-colors" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://instagram.com" target="_blank" class="hover:text-pink-500 transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" class="hover:text-white transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-20 bg-brand-card/50 border-t border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold font-tech text-white mb-2">TENTANG SAYA</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-accent to-brand-purple mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Profile Avatar / Icon Card -->
-                <div class="lg:col-span-4 flex justify-center">
-                    <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl p-1 bg-gradient-to-br from-brand-accent to-brand-purple glow-box">
-                        <div class="w-full h-full bg-brand-dark rounded-xl flex flex-col items-center justify-center p-6 text-center">
-                            <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-brand-accent/20 to-brand-purple/20 flex items-center justify-center text-brand-accent text-4xl mb-4 border border-brand-accent/30">
-                                <i class="fa-solid fa-user-astronaut"></i>
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Personal Info Card -->
+                    <div class="bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-800 backdrop-blur-custom hover:border-cyan-500/30 transition shadow-xl">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <i data-lucide="id-card" class="text-cyan-400"></i>
+                            Informasi Pribadi
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800">
+                                <span class="text-slate-400 text-sm">Nama Lengkap</span>
+                                <span class="text-white font-semibold">Theofilus Bilung, S.Kom</span>
                             </div>
-                            <h3 class="text-xl font-bold text-white">Theofilus Bilung</h3>
-                            <p class="text-xs text-brand-accent mt-1">S.Kom (Graduated 2025)</p>
-                            <p class="text-xs text-gray-400 mt-2"><i class="fa-solid fa-location-dot mr-1"></i> Sangatta, Kal-Tim</p>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800">
+                                <span class="text-slate-400 text-sm">Pendidikan</span>
+                                <span class="text-cyan-400 font-semibold">S1 Sistem Informasi</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800">
+                                <span class="text-slate-400 text-sm">Lokasi Domisili</span>
+                                <span class="text-white font-semibold flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-rose-400"></i> Sangatta, Kalimantan Timur
+                                </span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800">
+                                <span class="text-slate-400 text-sm">Status</span>
+                                <span class="text-emerald-400 font-semibold text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">Siap Bekerja (Open to Work)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Interests Card -->
+                    <div class="bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-800 backdrop-blur-custom hover:border-cyan-500/30 transition shadow-xl flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <i data-lucide="briefcase" class="text-cyan-400"></i>
+                                Minat & Orientasi Karir
+                            </h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                Berbekal latar belakang akademik **Sistem Informasi** dan kreativitas di dunia **Media & Konten**, saya sangat berminat untuk berkontribusi di bidang:
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
+                                    <i data-lucide="monitor" class="w-5 h-5 text-cyan-400 mx-auto mb-1"></i>
+                                    <span class="text-xs font-semibold text-slate-200">IT & System Admin</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
+                                    <i data-lucide="truck" class="w-5 h-5 text-cyan-400 mx-auto mb-1"></i>
+                                    <span class="text-xs font-semibold text-slate-200">Logistik & Distribusi</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
+                                    <i data-lucide="file-text" class="w-5 h-5 text-cyan-400 mx-auto mb-1"></i>
+                                    <span class="text-xs font-semibold text-slate-200">Administrasi Digital</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
+                                    <i data-lucide="video" class="w-5 h-5 text-cyan-400 mx-auto mb-1"></i>
+                                    <span class="text-xs font-semibold text-slate-200">Creative Content</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/20 text-xs text-cyan-300/90 flex items-start gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                            <span>Memiliki fleksibilitas tinggi dalam mempelajari alur kerja baru baik di bidang korporat, operasional lapangan, maupun pembuatan media kreatif.</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Text Description -->
-                <div class="lg:col-span-8 space-y-6">
-                    <h3 class="text-2xl font-bold text-white">
-                        Pengembang Sistem & Kreator Konten Digital
-                    </h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Saya merupakan lulusan S1 Sistem Informasi (Lulus tahun 2025) yang berdomisili di Sangatta, Kalimantan Timur. Memiliki minat mendalam di bidang teknologi informasi, pengelolaan administrasi & Analisis Sistem
-                        reatif pembuatan video digital.
+        <section id="skills" class="py-20 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-3">Keahlian & Perangkat Lunak</h2>
+                    <p class="text-slate-400 text-sm">Kombinasi kemampuan teknikal IT dan kreasif media visual</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full mt-3"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Technical & IT Skill Group -->
+                    <div class="bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-800">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
+                            <div class="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Technical & Information Systems</h3>
+                                <p class="text-xs text-slate-400">Pengelolaan data, web dasar, dan sistem informasi</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-300">Pengembangan Web (HTML, CSS, JS Dasar)</span>
+                                    <span class="text-cyan-400">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full w-[80%]"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-300">Analisis Sistem Informasi & Data</span>
+                                    <span class="text-cyan-400">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full w-[85%]"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-300">Administrasi Digital & Ms. Office / Excel</span>
+                                    <span class="text-cyan-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full w-[90%]"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-300">Manajemen Database & Operasional IT</span>
+                                    <span class="text-cyan-400">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full w-[75%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Creative & Software Group -->
+                    <div class="bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-800">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
+                            <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400">
+                                <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Creative Media & Software</h3>
+                                <p class="text-xs text-slate-400">Penyuntingan video, desain grafis, dan fotografi</p>
+                            </div>
+                        </div>
+
+                        <!-- Software Icons List -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center hover:border-cyan-400/50 transition">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-2 font-black text-xs">CapCut</div>
+                                <span class="text-xs font-medium text-slate-300">CapCut</span>
+                                <span class="block text-[10px] text-slate-500 mt-0.5">Video Editing</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center hover:border-cyan-400/50 transition">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mx-auto mb-2 font-black text-xs">AM</div>
+                                <span class="text-xs font-medium text-slate-300">Alight Motion</span>
+                                <span class="block text-[10px] text-slate-500 mt-0.5">Motion Graphic</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center hover:border-cyan-400/50 transition">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto mb-2 font-black text-xs">Canva</div>
+                                <span class="text-xs font-medium text-slate-300">Canva</span>
+                                <span class="block text-[10px] text-slate-500 mt-0.5">Graphic Design</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center hover:border-cyan-400/50 transition">
+                                <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center mx-auto mb-2 font-black text-xs">LR</div>
+                                <span class="text-xs font-medium text-slate-300">Adobe LR</span>
+                                <span class="block text-[10px] text-slate-500 mt-0.5">Photo Colorist</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 rounded-xl bg-slate-800/30 border border-slate-800">
+                            <h4 class="text-xs font-bold text-slate-300 mb-2">Bidang Kreatif Utama:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-cyan-300 border border-slate-700">Short Video Reels/TikTok</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-cyan-300 border border-slate-700">Content Planning</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-cyan-300 border border-slate-700">Visual Color Grading</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 bg-slate-950/50 border-t border-slate-800/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-3">Karya & Proyek</h2>
+                    <p class="text-slate-400 text-sm">Beberapa contoh hasil karya Sistem Informasi dan Kreatif Media</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full mt-3"></div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex justify-center items-center gap-2 mb-10">
+                    <button onclick="filterPortfolio('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition">Semua</button>
+                    <button onclick="filterPortfolio('it')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Sistem Informasi / IT</button>
+                    <button onclick="filterPortfolio('media')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Video & Konten</button>
+                </div>
+
+                <!-- Portfolio Items Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="port-item it bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition group">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                            <i data-lucide="layout" class="w-16 h-16 text-cyan-400/30 group-hover:scale-110 transition duration-500"></i>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-950/80 text-cyan-400 text-[10px] font-bold border border-cyan-500/30">IT Project</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition">Sistem Informasi Administrasi</h3>
+                            <p class="text-xs text-slate-400 mb-4 leading-relaxed">Perancangan & pengembangan konsep database sistem inventarisasi berkas digital secara efisien.</p>
+                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                <span class="px-2 py-0.5 rounded bg-slate-800">Database</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800">Web Concept</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <a href="creative-media.html" class="block port-item media bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition group cursor-pointer">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <i data-lucide="camera" class="w-16 h-16 text-sky-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-950/80 text-sky-400 text-[10px] font-bold border border-sky-500/30">creative media</span>
+                    </div>
+                    <div class="p-6">
+                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition">Color Grading & Visual Graphic</h3>
+                            <p class="text-xs text-slate-400 mb-4 leading-relaxed">Penyuntingan warna foto lanskap & portrait menggunakan Adobe Lightroom beserta template Canva.</p>
+                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                    <span class="px-2 py-0.5 rounded bg-slate-800">CapCut</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-800">Alight Motion</span>
+        </div>
+    </div>
+</a>
+
+
+                    
+                    <!-- Project 3 -->
+                    <a href="photography.html" class="block port-item media bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition group cursor-pointer">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <i data-lucide="camera" class="w-16 h-16 text-sky-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-950/80 text-sky-400 text-[10px] font-bold border border-sky-500/30">Photography</span>
+                    </div>
+                    <div class="p-6">
+                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition">Color Grading & Visual Graphic</h3>
+                            <p class="text-xs text-slate-400 mb-4 leading-relaxed">Penyuntingan warna foto lanskap & portrait menggunakan Adobe Lightroom beserta template Canva.</p>
+                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                    <span class="px-2 py-0.5 rounded bg-slate-800">Lightroom</span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-800">Canva</span>
+        </div>
+    </div>
+</a>
+                    
+               
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="bg-slate-900/80 rounded-3xl p-8 sm:p-12 border border-cyan-500/30 shadow-[0_0_30px_rgba(0,242,254,0.1)] relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <h2 class="text-3xl font-extrabold text-white mb-4">Mari Bekerja Sama!</h2>
+                    <p class="text-slate-300 text-sm max-w-xl mx-auto mb-8 leading-relaxed">
+                        Apakah Anda membutuhkan tenaga kerja di bidang **IT Admin, Logistik**, atau **Content Creator / Video Editor**? Saya siap berkontribusi.
                     </p>
-                    <p class="text-gray-300 leading-relaxed">
-                        Selain mengembangkan situs web dan pemrograman game sederhana, saya aktif sebagai pembuat konten video kreatif (seperti video gameplay Honor of Kings, Toram Online, AMV, dan GMV) dengan pengalaman memanfaatkan berbagai perangkat lunak modern untuk penyuntingan visual.
-                    </p>
 
-                    <!-- Hobi & Minat Section -->
-                    <div class="pt-4">
-                        <h4 class="text-sm font-semibold uppercase tracking-wider text-brand-accent mb-3">Minat & Hobi Utama</h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <div class="p-3 bg-gray-900/80 rounded-xl border border-gray-800 text-center hover:border-brand-accent/50 transition-colors">
-                                <i class="fa-solid fa-person-running text-xl text-brand-accent mb-1"></i>
-                                <p class="text-xs font-medium text-gray-300">Lari (Running)</p>
-                            </div>
-                            <div class="p-3 bg-gray-900/80 rounded-xl border border-gray-800 text-center hover:border-brand-accent/50 transition-colors">
-                                <i class="fa-solid fa-robot text-xl text-brand-purple mb-1"></i>
-                                <p class="text-xs font-medium text-gray-300">Model Kit Gundam RG</p>
-                            </div>
-                            <div class="p-3 bg-gray-900/80 rounded-xl border border-gray-800 text-center hover:border-brand-accent/50 transition-colors">
-                                <i class="fa-solid fa-shield-halved text-xl text-brand-pink mb-1"></i>
-                                <p class="text-xs font-medium text-gray-300">Action Figure</p>
-                            </div>
-                            <div class="p-3 bg-gray-900/80 rounded-xl border border-gray-800 text-center hover:border-brand-accent/50 transition-colors">
-                                <i class="fa-solid fa-gamepad text-xl text-emerald-400 mb-1"></i>
-                                <p class="text-xs font-medium text-gray-300">Video Games & Editing</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold font-tech text-white mb-2">PENDIDIKAN & PENGALAMAN</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-accent to-brand-purple mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Education Timeline Card -->
-                <div class="bg-brand-card p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-brand-accent/40 transition-all">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 rounded-lg bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-lg">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Pendidikan Resmi</h3>
-                    </div>
-
-                    <div class="border-l-2 border-brand-accent/30 pl-4 space-y-6">
-                        <div class="relative">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-brand-accent"></div>
-                            <span class="text-xs font-mono text-brand-accent bg-brand-accent/10 px-2 py-0.5 rounded">2020- 2025</span>
-                            <h4 class="text-lg font-bold text-white mt-1">S1 Sistem Informasi</h4>
-                            <p class="text-sm text-gray-400 mt-1">Lulus Tahun 2025</p>
-                            <p class="text-xs text-gray-400 mt-2 leading-relaxed">
-                                Berfokus pada analisis sistem informasi, pemrograman web, manajemen basis data, serta perencanaan solusi teknologi untuk organisasi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content Creator & Project Experience -->
-                <div class="bg-brand-card p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-brand-purple/40 transition-all">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 rounded-lg bg-brand-purple/10 border border-brand-purple/30 flex items-center justify-center text-brand-purple text-lg">
-                            <i class="fa-solid fa-clapperboard"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Aktivitas & Kreativitas</h3>
-                    </div>
-
-                    <div class="border-l-2 border-brand-purple/30 pl-4 space-y-6">
-                        <div class="relative">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-brand-purple"></div>
-                            <span class="text-xs font-mono text-brand-purple bg-brand-purple/10 px-2 py-0.5 rounded">Official Creator</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Content Creator - Honor of Kings & Toram Online</h4>
-                            <p class="text-xs text-gray-400 mt-2 leading-relaxed">
-                                Memproduksi konten video kreatif rutin menggunakan CapCut, Alight Motion, Canva, dan Adobe Lightroom. Spesialisasi dalam perancangan video pendek, AMV/GMV, dan konten gaming bertempo cepat.
-                            </p>
-                        </div>
-
-                        <div class="relative">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-brand-pink"></div>
-                            <span class="text-xs font-mono text-brand-pink bg-brand-pink/10 px-2 py-0.5 rounded">Proyek Software</span>
-                            <h4 class="text-lg font-bold text-white mt-1">Web Development & Game Programming</h4>
-                            <p class="text-xs text-gray-400 mt-2 leading-relaxed">
-                                Mengembangkan proyek situs web berbasis HTML/CSS/JS serta prototipe game sederhana dengan logika pemrograman interaktif.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-20 bg-brand-card/50 border-t border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold font-tech text-white mb-2">KEAHLIAN UTAMA</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-accent to-brand-purple mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Technical & Coding -->
-                <div class="p-6 rounded-2xl bg-brand-dark border border-gray-800 hover:border-brand-accent/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-xl mb-4">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-4">Technical & Coding</h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent text-xs"></i> HTML / CSS / JavaScript</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent text-xs"></i> Web Development</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent text-xs"></i> Basic Game Development</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent text-xs"></i> Information Systems Analysis</li>
-                    </ul>
-                </div>
-
-                <!-- Creative & Editing -->
-                <div class="p-6 rounded-2xl bg-brand-dark border border-gray-800 hover:border-brand-purple/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-brand-purple/10 border border-brand-purple/30 flex items-center justify-center text-brand-purple text-xl mb-4">
-                        <i class="fa-solid fa-photo-film"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-4">Creative & Editing</h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-xs"></i> CapCut & Alight Motion</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-xs"></i> Canva & Adobe Lightroom</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-xs"></i> AMV & GMV Video Production</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-xs"></i> Gaming Content Editing</li>
-                    </ul>
-                </div>
-
-                <!-- Soft Skills -->
-                <div class="p-6 rounded-2xl bg-brand-dark border border-gray-800 hover:border-brand-pink/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-brand-pink/10 border border-brand-pink/30 flex items-center justify-center text-brand-pink text-xl mb-4">
-                        <i class="fa-solid fa-user-gear"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-4">Soft Skills & Admin</h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink text-xs"></i> Communication Skills</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink text-xs"></i> Problem Solving</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink text-xs"></i> Administration Management</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink text-xs"></i> EDITING</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold font-tech text-white mb-2">PORTOFOLIO & KARYA</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-accent to-brand-purple mx-auto rounded-full mb-6"></div>
-                <p class="text-gray-400 text-sm max-w-xl mx-auto">Kumpulan karya pengembangan web, kreasi konten game, serta penyuntingan video digital.</p>
-            </div>
-
-            <!-- Portfolio Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <button class="filter-btn px-4 py-2 rounded-xl bg-gradient-to-r from-brand-accent to-brand-purple text-black font-semibold text-xs sm:text-sm active" data-filter="all">Semua Karya</button>
-                <button class="filter-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-300 hover:text-white font-semibold text-xs sm:text-sm" data-filter="web">Web & Software</button>
-                <button class="filter-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-300 hover:text-white font-semibold text-xs sm:text-sm" data-filter="content">Game & Content Creation</button>
-                <button class="filter-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-300 hover:text-white font-semibold text-xs sm:text-sm" data-filter="editing">Video Editing & Design</button>
-            </div>
-
-            <!-- Portfolio Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
-                
-                <!-- Item 1: Web -->
-                <div class="portfolio-item web bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/00F0FF?text=Sistem+Informasi+Web" alt="Web System Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-accent/90 text-black font-bold text-xs px-2.5 py-1 rounded-md">Web Dev</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">Web Application Sistem Informasi</h3>
-                        <p class="text-xs text-gray-400 mb-4">Pengembangan platform web interaktif untuk pengelolaan data dan analisis sistem informasi berbasis responsive design.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-accent">
-                            <span>#HTML</span> <span>#CSS</span> <span>#JS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2: Content Creator (Honor of Kings) -->
-                <div class="portfolio-item content bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-purple/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/7000FF?text=Honor+of+Kings+Content" alt="Honor of Kings Content" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-purple/90 text-white font-bold text-xs px-2.5 py-1 rounded-md">Gaming Content</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">Honor of Kings Gameplay Showcase</h3>
-                        <p class="text-xs text-gray-400 mb-4">Produksi video gameplay highlights, strategi hero, serta editing cepat dengan efek visual menarik untuk pemirsa sosial media.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-purple">
-                            <span>#HoK</span> <span>#Gaming</span> <span>#CapCut</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3: Editing (AMV/GMV) -->
-                <div class="portfolio-item editing bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-pink/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/FF007A?text=AMV+%2f+GMV+Video+Editing" alt="AMV GMV Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-pink/90 text-white font-bold text-xs px-2.5 py-1 rounded-md">Video Editing</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">AMV & GMV Motion Video</h3>
-                        <p class="text-xs text-gray-400 mb-4">Sinking audio & visual ritmis tingkat tinggi menggunakan Alight Motion & CapCut untuk karya musik video animasi/game.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-pink">
-                            <span>#AlightMotion</span> <span>#AMV</span> <span>#GMV</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4: Content Creator (toram online) -->
-                <div class="portfolio-item content bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-purple/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/7000FF?text=Toram Online+Creator+Hub" alt="toram online Content" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-purple/90 text-white font-bold text-xs px-2.5 py-1 rounded-md">Gaming Content</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">Toram Online Creator Content</h3>
-                        <p class="text-xs text-gray-400 mb-4">Pembuatan konten hiburan Toram Online, ulasan game internal, dan penyuntingan materi singkat untuk platform TikTok/YouTube Shorts.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-purple">
-                            <span>#TORAM ONLINE</span> <span>#Shorts</span> <span>#Canva</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5: Web & Game Programming -->
-                <div class="portfolio-item web bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/00F0FF?text=Simple+Game+Programming" alt="Game Programming" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-accent/90 text-black font-bold text-xs px-2.5 py-1 rounded-md">Game Dev</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">Pemrograman Game Sederhana</h3>
-                        <p class="text-xs text-gray-400 mb-4">Eksperimen logika game 2D dan pengolahan skrip pemrograman interaktif berbasis browser.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-accent">
-                            <span>#JavaScript</span> <span>#GameLogic</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 6: Design & Preset Showcase -->
-                <div class="portfolio-item editing bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-pink/50 transition-all group">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                        <img src="https://placehold.co/600x400/111827/FF007A?text=Lightroom+%26+Canva+Design" alt="Design & Preset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-pink/90 text-white font-bold text-xs px-2.5 py-1 rounded-md">Design & Photo</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2">Color Grading & Visual Design</h3>
-                        <p class="text-xs text-gray-400 mb-4">Pengolahan warna foto menggunakan Adobe Lightroom serta pembuatan aset promosi visual dengan Canva.</p>
-                        <div class="flex items-center gap-2 text-xs font-mono text-brand-pink">
-                            <span>#Lightroom</span> <span>#Canva</span> <span>#Design</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-20 bg-brand-card/50 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold font-tech text-white mb-2">HUBUNGI SAYA</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-brand-accent to-brand-purple mx-auto rounded-full mb-4"></div>
-                <p class="text-gray-400 text-sm">Mari berdiskusi mengenai proyek, kolaborasi konten, atau peluang kerja sama.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <!-- Direct Info -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="p-6 rounded-2xl bg-brand-card border border-gray-800 space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs text-gray-400 font-medium">Lokasi</h4>
-                                <p class="text-sm font-semibold text-white">Sangatta, Kalimantan Timur</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-brand-purple/10 border border-brand-purple/30 flex items-center justify-center text-brand-purple">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs text-gray-400 font-medium">Status</h4>
-                                <p class="text-sm font-semibold text-white">Lulusan S1 Sistem Informasi (2025)</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-brand-pink/10 border border-brand-pink/30 flex items-center justify-center text-brand-pink">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs text-gray-400 font-medium">Email Kontak</h4>
-                                <p class="text-sm font-semibold text-white">theofilusbilung@EMAIL
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Social Cards -->
-                    <div class="p-6 rounded-2xl bg-brand-card border border-gray-800">
-                        <h4 class="text-sm font-bold text-white mb-4">Media Sosial & Saluran</h4>
-                        <div class="grid grid-cols-2 gap-3 text-xs">
-                            <a href="https://www.youtube.com/@theogabrie25l" target="_blank" class="p-3 bg-gray-900 rounded-xl flex items-center gap-2 text-gray-300 hover:text-red-400 hover:border border-red-500/30 transition-all">
-                                <i class="fa-brands fa-youtube text-red-500 text-lg"></i> YouTube
-                            </a>
-                            <a href="https://www.tiktok.com/@gabrielbeeth25" target="_blank" class="p-3 bg-gray-900 rounded-xl flex items-center gap-2 text-gray-300 hover:text-pink-400 hover:border border-pink-500/30 transition-all">
-                                <i class="fa-brands fa-tiktok text-pink-400 text-lg"></i> TikTok
-                            </a>
-                            <a href="https://www.instagram.com/rxbee25" target="_blank" class="p-3 bg-gray-900 rounded-xl flex items-center gap-2 text-gray-300 hover:text-pink-500 hover:border border-pink-500/30 transition-all">
-                                <i class="fa-brands fa-instagram text-pink-500 text-lg"></i> Instagram
-                            </a>
-                            <a href="https://github.com" target="_blank" class="p-3 bg-gray-900 rounded-xl flex items-center gap-2 text-gray-300 hover:text-white hover:border border-white/30 transition-all">
-                                <i class="fa-brands fa-github text-white text-lg"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Form -->
-                <div class="lg:col-span-7 bg-brand-card p-6 sm:p-8 rounded-2xl border border-gray-800">
-                    <form id="contact-form" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-xs font-semibold text-gray-300 mb-1">Nama Lengkap</label>
-                            <input type="text" id="name" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-gray-200 text-sm focus:outline-none focus:border-brand-accent transition-colors">
-                        </div>
-
-                        <div>
-                            <label for="email" class="block text-xs font-semibold text-gray-300 mb-1">Alamat Email</label>
-                            <input type="email" id="email" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-gray-200 text-sm focus:outline-none focus:border-brand-accent transition-colors">
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-xs font-semibold text-gray-300 mb-1">Pesan / Penawaran</label>
-                            <textarea id="message" rows="4" required placeholder="Tuliskan pesan Anda di sini..." class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-gray-200 text-sm focus:outline-none focus:border-brand-accent transition-colors resize-none"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-accent to-brand-purple text-black font-bold text-sm hover:opacity-90 transition-opacity">
-                            <i class="fa-solid fa-paper-plane mr-2"></i> Kirim Pesan
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="mailto:theofilusbilung@gmail.com" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold hover:shadow-[0_0_25px_rgba(0,242,254,0.5)] transition flex items-center justify-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <span>Kirim Email Langsung</span>
+                        </a>
+                        <button onclick="copyEmail()" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-800 border border-slate-700 text-white font-semibold hover:border-cyan-400/50 hover:bg-slate-700 transition flex items-center justify-center gap-2">
+                            <i data-lucide="copy" class="w-4 h-4 text-cyan-400"></i>
+                            <span id="copy-btn-text">Salin Email</span>
                         </button>
-                    </form>
+                    </div>
 
-                    <!-- Alert Container -->
-                    <div id="form-alert" class="hidden mt-4 p-4 rounded-xl text-xs font-medium border"></div>
+                    <!-- Toast Notification -->
+                    <div id="toast" class="opacity-0 pointer-events-none transition-all duration-300 fixed bottom-6 right-6 bg-cyan-500 text-slate-950 font-bold px-4 py-3 rounded-xl shadow-lg text-xs flex items-center gap-2 z-50">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                        <span>Email berhasil disalin ke clipboard!</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-8 bg-brand-dark border-t border-gray-800 text-center text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>© 2026 Theofilus Bilung, S.Kom. All rights reserved.</p>
-            <p class="mt-1 text-gray-600">Built with HTML5, Tailwind CSS, & Interactive JS.</p>
-        </div>
-    </footer>
+        <footer class="py-8 bg-slate-950 border-t border-slate-800/80 text-center text-xs text-slate-500">
+            <div class="max-w-6xl mx-auto px-4">
+                <p>© 2026 Theofilus Bilung, S.Kom. All Rights Reserved.</p>
+                <p class="mt-1 text-[11px] text-slate-600">Sangatta, Kalimantan Timur • Sistem Informasi & Content Creation</p>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // 1. Simulated Splash Screen Progress Logic
+        window.addEventListener('load', () => {
+            const progressBar = document.getElementById('progress-bar');
+            const loadingStatus = document.getElementById('loading-status');
+            const enterBtn = document.getElementById('enter-btn');
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 20) + 10;
+                if (progress > 100) progress = 100;
+
+                progressBar.style.width = `${progress}%`;
+
+                if (progress < 40) {
+                    loadingStatus.textContent = 'Memuat Aset Visual...';
+                } else if (progress < 80) {
+                    loadingStatus.textContent = 'Menyiapkan Data Portofolio...';
+                } else {
+                    loadingStatus.textContent = 'Sistem Siap!';
+                }
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                        enterBtn.classList.add('opacity-100', 'translate-y-0');
+                    }, 400);
+                }
+            }, 180);
         });
 
-        // Close mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+        // 2. Transition from Splash Screen to Main Portfolio
+        function enterPortfolio() {
+            const splashScreen = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
 
-        // Portfolio Filtering System
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button state
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-gradient-to-r', 'from-brand-accent', 'to-brand-purple', 'text-black', 'active');
-                    b.classList.add('bg-gray-800', 'text-gray-300');
-                });
-
-                btn.classList.remove('bg-gray-800', 'text-gray-300');
-                btn.classList.add('bg-gradient-to-r', 'from-brand-accent', 'to-brand-purple', 'text-black', 'active');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Interactive Form Submission
-        const contactForm = document.getElementById('contact-form');
-        const formAlert = document.getElementById('form-alert');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            
-            // Show success alert inside DOM (No alert() popup used)
-            formAlert.className = 'mt-4 p-4 rounded-xl text-xs font-medium bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 block';
-            formAlert.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> Terima kasih <strong>${name}</strong>, pesan Anda telah berhasil dikirim! Saya akan membalasnya secepat mungkin.`;
-
-            contactForm.reset();
-
-            // Auto hide message after 5 seconds
+            splashScreen.classList.add('opacity-0');
             setTimeout(() => {
-                formAlert.classList.add('hidden');
-            }, 5000);
-        });
+                splashScreen.style.display = 'none';
+                mainContent.classList.remove('opacity-0');
+            }, 700);
+        }
+
+        // 3. Mobile Navigation Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // 4. Portfolio Category Filter
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.port-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-slate-950');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+            event.currentTarget.classList.add('bg-cyan-500', 'text-slate-950');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. Copy Email Action
+        function copyEmail() {
+            const email = "theofilusbilung@gmail.com";
+            
+            // Clipboard copy fallbacks
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email);
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = email;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+
+            // Show Toast
+            const toast = document.getElementById('toast');
+            const copyBtnText = document.getElementById('copy-btn-text');
+            
+            copyBtnText.textContent = "Tersalin!";
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+                copyBtnText.textContent = "Salin Email";
+            }, 3000);
+        }
     </script>
 </body>
 </html>

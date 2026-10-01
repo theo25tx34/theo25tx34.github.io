@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Media - Portofolio</title>
+    <!-- File CSS Terpisah -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">
+                <i data-lucide="arrow-left" class="icon-sm"></i>
+                Kembali ke Portofolio
+            </a>
+            <span class="logo">
+                TB<span class="dot">.</span>
+            </span>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="main-container">
+        
+        <!-- Judul Halaman -->
+        <section class="page-header">
+            <div class="title-wrapper">
+                <div class="icon-box">
+                    <i data-lucide="TB" class="icon-lg"></i>
+                </div>
+                <h1 class="gradient-title">Creative Media</h1>
+            </div>
+            <p class="subtitle">
+                Ruang pameran karya digital: desain grafis, editing video, konten media sosial, dan aset visual kreatif.
+            </p>
+        </section>
+
+        <!-- Form Upload -->
+        <section class="form-card">
+            <h2 class="form-title">
+                <i data-lucide="upload-cloud" class="icon-sm"></i> Unggah Karya Baru
+            </h2>
+            <form id="upload-form" class="form-grid">
+                
+                <!-- Input File Kustom -->
+                <div class="form-group">
+                    <label class="form-label">Pilih File (Gambar/Video)</label>
+                    <input type="file" id="media-input" accept="image/*,video/*" required class="hidden-input" onchange="updateFileName(this)">
+                    <label for="media-input" class="file-label">
+                        <span id="file-name" class="file-text">Pilih file karya...</span>
+                        <span class="btn-browse">Browse</span>
+                    </label>
+                </div>
+
+                <!-- Input Judul -->
+                <div class="form-group">
+                    <label class="form-label">Judul Karya</label>
+                    <input type="text" id="title-input" placeholder="Masukkan judul..." required class="form-input">
+                </div>
+
+                <!-- Select Kategori -->
+                <div class="form-group">
+                    <label class="form-label">Kategori</label>
+                    <select id="category-input" class="form-select">
+                        <option value="design">Graphic Design</option>
+                        <option value="video">Video Editing</option>
+                        <option value="banner">Banner & Social Media</option>
+                    </select>
+                </div>
+
+                <!-- Tombol Submit -->
+                <div class="form-group flex-end">
+                    <button type="submit" class="btn-submit">
+                        <i data-lucide="plus" class="icon-sm"></i> Tambahkan Karya
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Filter Kategori -->
+        <div class="filter-container">
+            <button data-filter="all" class="filter-btn active">Semua Karya</button>
+            <button data-filter="design" class="filter-btn">Graphic Design</button>
+            <button data-filter="video" class="filter-btn">Video Editing</button>
+            <button data-filter="banner" class="filter-btn">Banner & Social Media</button>
+        </div>
+
+        <!-- Grid Karya -->
+        <div id="media-grid" class="media-grid"></div>
+
+    </main>
+
+    <!-- Modal Fullscreen -->
+    <div id="media-modal" class="modal modal-hidden">
+        <button id="close-modal-btn" class="modal-close-btn">
+            <i data-lucide="x" class="icon-md"></i>
+        </button>
+
+        <div class="modal-body">
+            <div id="modal-content-wrapper" class="modal-content"></div>
+            <div class="modal-info">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <p id="modal-category" class="modal-category"></p>
+                <div id="modal-meta-details" class="modal-meta-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        lucide.createIcons();
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const mediaGrid = document.getElementById('media-grid');
+        const uploadForm = document.getElementById('upload-form');
+        const MAX_MEDIA = 15;
+
+        const mediaModal = document.getElementById('media-modal');
+        const modalContentWrapper = document.getElementById('modal-content-wrapper');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const modalMetaDetails = document.getElementById('modal-meta-details');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        document.addEventListener('DOMContentLoaded', loadSavedMedia);
+
+        function updateFileName(input) {
+            const fileNameSpan = document.getElementById('file-name');
+            if (input.files && input.files.length > 0) {
+                fileNameSpan.textContent = input.files[0].name;
+                fileNameSpan.classList.add('selected');
+            } else {
+                fileNameSpan.textContent = "Pilih file karya...";
+                fileNameSpan.classList.remove('selected');
+            }
+        }
+
+        // Format Ukuran File (Bytes ke KB / MB)
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Format Durasi Video (Detik ke MM:SS)
+        function formatDuration(seconds) {
+            if (!seconds || isNaN(seconds)) return null;
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+                const mediaCards = document.querySelectorAll('.media-card');
+
+                mediaCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || filterValue === cardCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const currentCount = document.querySelectorAll('.media-card').length;
+            if (currentCount >= MAX_MEDIA) {
+                alert(`Batas maksimal ${MAX_MEDIA} karya telah tercapai!`);
+                return;
+            }
+
+            const mediaInput = document.getElementById('media-input');
+            const titleInput = document.getElementById('title-input');
+            const categoryInput = document.getElementById('category-input');
+
+            const file = mediaInput.files[0];
+            const title = titleInput.value;
+            const category = categoryInput.value;
+
+            if (file) {
+                const isVideo = file.type.startsWith('video/');
+                const fileSize = formatFileSize(file.size);
+                const fileUrl = URL.createObjectURL(file); // Menggunakan ObjectURL agar performa ringan
+
+                if (isVideo) {
+                    // Ambil durasi video secara otomatis
+                    const tempVideo = document.createElement('video');
+                    tempVideo.src = fileUrl;
+                    tempVideo.onloadedmetadata = function() {
+                        const duration = formatDuration(tempVideo.duration);
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const mediaData = {
+                                id: Date.now(),
+                                title: title,
+                                category: category,
+                                url: e.target.result,
+                                isVideo: true,
+                                fileSize: fileSize,
+                                duration: duration
+                            };
+                            saveAndRender(mediaData);
+                        };
+                        reader.readAsDataURL(file);
+                    };
+                } else {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const mediaData = {
+                            id: Date.now(),
+                            title: title,
+                            category: category,
+                            url: e.target.result,
+                            isVideo: false,
+                            fileSize: fileSize,
+                            duration: null
+                        };
+                        saveAndRender(mediaData);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        function saveAndRender(mediaData) {
+            saveMediaToStorage(mediaData);
+            renderMediaCard(mediaData);
+            lucide.createIcons();
+            uploadForm.reset();
+            document.getElementById('file-name').textContent = "Pilih file karya...";
+            document.getElementById('file-name').classList.remove('selected');
+        }
+
+        function renderMediaCard(data) {
+            let categoryLabel = "";
+            if(data.category === "design") categoryLabel = "Graphic Design";
+            else if(data.category === "video") categoryLabel = "Video Editing";
+            else if(data.category === "banner") categoryLabel = "Banner & Social Media";
+
+            const newCard = document.createElement('div');
+            newCard.className = "media-card";
+            newCard.setAttribute('data-category', data.category);
+            newCard.setAttribute('data-id', data.id);
+
+            let previewElement = data.isVideo
+                ? `<video src="${data.url}" class="card-media" muted></video>`
+                : `<img src="${data.url}" alt="${data.title}" class="card-media">`;
+
+            // Badge durasi untuk video
+            let durationBadge = (data.isVideo && data.duration) 
+                ? `<span class="duration-badge"><i data-lucide="clock" class="icon-xs"></i> ${data.duration}</span>` 
+                : '';
+
+            newCard.innerHTML = `
+                <div class="card-preview" onclick="openModal(${JSON.stringify(data).replace(/"/g, '&quot;')})">
+                    ${previewElement}
+                    ${durationBadge}
+                    <div class="card-overlay">
+                        <span class="view-badge">
+                            <i data-lucide="maximize-2" class="icon-xs"></i> Lihat Full
+                        </span>
+                    </div>
+                </div>
+                <button onclick="removeMedia(${data.id}, event)" class="delete-btn">
+                    <i data-lucide="trash-2" class="icon-sm"></i>
+                </button>
+                <div class="card-info" onclick="openModal(${JSON.stringify(data).replace(/"/g, '&quot;')})">
+                    <h3 class="card-title">${data.title}</h3>
+                    <div class="card-meta-row">
+                        <span class="card-meta"><i data-lucide="tag" class="icon-xs"></i> ${categoryLabel}</span>
+                        <span class="card-meta"><i data-lucide="hard-drive" class="icon-xs"></i> ${data.fileSize || '-'}</span>
+                    </div>
+                </div>
+            `;
+
+            mediaGrid.prepend(newCard);
+        }
+
+        function saveMediaToStorage(item) {
+            let items = JSON.parse(localStorage.getItem('my_creative_media')) || [];
+            items.push(item);
+            localStorage.setItem('my_creative_media', JSON.stringify(items));
+        }
+
+        function loadSavedMedia() {
+            let items = JSON.parse(localStorage.getItem('my_creative_media')) || [];
+            items.forEach(item => renderMediaCard(item));
+            lucide.createIcons();
+        }
+
+        function removeMedia(id, event) {
+            event.stopPropagation();
+            let items = JSON.parse(localStorage.getItem('my_creative_media')) || [];
+            items = items.filter(i => i.id !== id);
+            localStorage.setItem('my_creative_media', JSON.stringify(items));
+
+            const card = document.querySelector(`.media-card[data-id="${id}"]`);
+            if (card) card.remove();
+        }
+
+        function openModal(data) {
+            let categoryLabel = "";
+            if(data.category === "design") categoryLabel = "Graphic Design";
+            else if(data.category === "video") categoryLabel = "Video Editing";
+            else if(data.category === "banner") categoryLabel = "Banner & Social Media";
+
+            if (data.isVideo) {
+                modalContentWrapper.innerHTML = `<video src="${data.url}" controls autoplay class="modal-element"></video>`;
+            } else {
+                modalContentWrapper.innerHTML = `<img src="${data.url}" alt="${data.title}" class="modal-element">`;
+            }
+
+            modalTitle.textContent = data.title;
+            modalCategory.textContent = categoryLabel;
+
+            // Tampilkan Detail Ukuran & Durasi di Modal
+            let detailsHTML = `<span class="meta-tag"><i data-lucide="hard-drive" class="icon-xs"></i> Ukuran: ${data.fileSize || 'N/A'}</span>`;
+            if (data.isVideo && data.duration) {
+                detailsHTML += `<span class="meta-tag"><i data-lucide="clock" class="icon-xs"></i> Durasi: ${data.duration}</span>`;
+            }
+            modalMetaDetails.innerHTML = detailsHTML;
+
+            lucide.createIcons();
+            mediaModal.classList.remove('modal-hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            mediaModal.classList.add('modal-hidden');
+            modalContentWrapper.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        mediaModal.addEventListener('click', function(e) {
+            if (e.target === mediaModal) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
